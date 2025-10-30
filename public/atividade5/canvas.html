@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="canvas.css">
+</head>
+
+<body>
+    <div class="textos">
+        <div class="txt01">Exercício 01</div>
+        <div class="txt02">Exercício 02</div>
+    </div>
+    <div class="exercicios">
+
+        <canvas id="exercicio01" width="500" height="500"></canvas>
+
+
+        <canvas id="exercicio02" width="500" height="500"></canvas>
+
+    </div>
+
+    <div class="voltar">
+        <p><a class="link-projetos" href="/public/projeto/projeto.html" target="_blank">Ver meus projetos</a></p>
+    </div>
+    <script>
+        let canvas1 = document.getElementById('exercicio01');
+        let ctx = canvas1.getContext('2d');
+        // retângulos
+        // ctx.beginPath();
+        // ctx.lineWidth = 2;
+        // ctx.fillStyle = 'blue';
+        // ctx.strokeStyle = 'red';
+        // ctx.fillRect(10,10,50,50);
+        // ctx.strokeRect(10,10,50,50);
+        // ctx.closePath();
+
+        // linhas
+        // ctx.beginPath();
+        // ctx.lineWidth = 2;
+        // ctx.fillStyle = 'blue';
+        // ctx.strokeStyle = 'red';
+        // ctx.moveTo(200,150);
+        // ctx.lineTo(60,10);
+        // ctx.lineTo(60,250);
+        // ctx.lineTo(200,250);
+        // ctx.lineTo(200,150);
+        // ctx.fill();
+        // ctx.stroke();
+        // ctx.closePath();
+
+        // arcos
+        // ctx.beginPath();
+        // ctx.lineWidth = 2;
+        // ctx.fillStyle = 'blue';
+        // ctx.strokeStyle = 'red';
+        // ctx.arc(200,200,50,1.5*Math.PI,2.5*Math.PI);
+        // ctx.fill();
+        // ctx.stroke();
+        // ctx.closePath();
+
+        // texto
+        // ctx.beginPath();
+        // ctx.lineWidth = 2;
+        // ctx.fillStyle = 'blue';
+        // ctx.strokeStyle = 'red';
+        // ctx.font = "90px Arial"
+        // ctx.textAlign = "center";
+        // ctx.fillText("Olá",200,350);
+        // ctx.strokeText("Olá",200,350)
+        // ctx.closePath();
+
+
+        // Exercício 02
+        // Chão
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'gray';
+        ctx.fillRect(0, 370, 500, 150);
+        ctx.closePath();
+
+        // Casa
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = '#591D10';
+        ctx.strokeStyle = '#591D10';
+        ctx.fillRect(195, 250, 120, 120);
+        ctx.closePath();
+        // janela 01
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'lightskyblue';
+        ctx.strokeStyle = 'lightskyblue';
+        ctx.fillRect(206, 280, 35, 35);
+        ctx.closePath();
+        //Janela 02
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'lightskyblue';
+        ctx.strokeStyle = 'lightskyblue';
+        ctx.fillRect(270, 280, 35, 35);
+        ctx.closePath();
+        // porta
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = '#2B0A01';
+        ctx.fillRect(245, 320, 21, 50);
+        ctx.closePath();
+
+        // Sol
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'Yellow';
+        ctx.arc(390, 100, 50, 1.5 * Math.PI, 3.5 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        // Árvore 01
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = '#822817';
+        ctx.fillRect(455, 365, 21, 50);
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'Green';
+        ctx.arc(465, 355, 25, 1.5 * Math.PI, 3.5 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        // Árvore 02
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = '#822817';
+        ctx.fillRect(60, 320, 21, 50);
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'Green';
+        ctx.arc(70, 315, 25, 1.5 * Math.PI, 3.5 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        // Telhado
+        ctx.beginPath();
+        ctx.moveTo(195, 250);
+        ctx.lineTo(255, 200);
+        ctx.lineTo(315, 250);
+        ctx.fillStyle = '#CF3117'
+        ctx.fill();
+        ctx.closePath();
+
+
+        // Cachoeira
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 370, 60, 130);
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'blue';
+        ctx.arc(0, 370, 60, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(50, 430, 120, 70);
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = 'blue';
+        ctx.arc(170, 500, 70, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        let canvas2 = document.getElementById('exercicio02');
+        let ctx2 = canvas2.getContext('2d');
+
+
+
+        // arco 01
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.strokeStyle = 'green';
+        ctx2.arc(250, 250, 150, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx2.stroke();
+        ctx2.closePath();
+        // Meio branco
+        // linhas
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'white';
+        ctx2.moveTo(250, 250);
+        ctx2.lineTo(10, 10);
+        ctx2.lineTo(550, 10)
+        ctx2.lineTo(400, 100)
+        ctx2.fill();
+        ctx2.closePath();
+
+        // retângulos
+        // retângulo 01
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'blue';
+        ctx2.fillRect(0, 0, 70, 70);
+        ctx2.closePath();
+        // retângulo 02
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'red';
+        ctx2.fillRect(430, 0, 70, 70);
+        ctx2.closePath();
+
+
+
+
+
+
+
+
+
+
+        // retângulo meio meio
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'red';
+        ctx2.fillRect(180, 250, 70, 70);
+        ctx2.closePath();
+
+
+
+
+
+
+
+
+
+
+
+
+        // Arco parte de baixo esquerda
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.strokeStyle = 'green';
+        ctx2.arc(250, 500, 122, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx2.stroke();
+        ctx2.closePath();
+
+
+
+
+
+        // Quadrado branco - inferior direito
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'white';
+        ctx2.fillRect(250, 250, 250, 250);
+        ctx2.beginPath();
+        // Arco parte de baixo direita
+        ctx2.lineWidth = 2;
+        ctx2.strokeStyle = 'green';
+        ctx2.arc(250, 500, 80, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx2.stroke();
+        ctx2.closePath();
+
+        // Quadrado branco - inferior esquerdo
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'white';
+        ctx2.fillRect(169, 410, 80, 90);
+        ctx2.closePath();
+
+
+
+
+
+        // retângulo meio esquerdo
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'cyan';
+        ctx2.fillRect(0, 200, 50, 100);
+        ctx2.closePath();
+        // retângulo meio direito
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'cyan';
+        ctx2.fillRect(450, 225, 50, 50);
+        ctx2.closePath();
+
+
+
+
+        // Linhas
+        // Linha do azul
+        ctx2.beginPath();
+        ctx2.moveTo(0, 0);
+        ctx2.strokeStyle = 'blue';
+        ctx2.lineTo(250, 249);
+        ctx2.stroke();
+
+        // Linha do vermelho
+        ctx2.beginPath();
+        ctx2.moveTo(500, 0);
+        ctx2.strokeStyle = 'red';
+        ctx2.lineTo(250, 249);
+        ctx2.stroke();
+
+        // Linha do meio
+        ctx2.beginPath();
+        ctx2.moveTo(0, 250);
+        ctx2.strokeStyle = 'green';
+        ctx2.lineTo(500, 250);
+        ctx2.stroke();
+        // Linha do meio para baixo
+        ctx2.beginPath();
+        ctx2.moveTo(250, 500);
+        ctx2.strokeStyle = 'gray';
+        ctx2.lineTo(250, 250);
+        ctx2.stroke();
+
+
+        // Arco 02
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.strokeStyle = 'green';
+        ctx2.arc(250, 250, 110, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx2.stroke();
+        ctx2.closePath();
+
+
+
+
+        // Bolinhas
+        // Bolinha 01
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'cyan';
+        ctx2.strokeStyle = 'blue'
+        ctx2.arc(250, 200, 25, 1.5 * Math.PI, 3.5 * Math.PI);
+        ctx2.fill();
+        ctx2.stroke();
+        ctx2.closePath();
+
+        // Metade arco fim meio
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'cyan';
+        ctx2.strokeStyle = 'green'
+        ctx2.arc(250, 500, 50, 1.0 * Math.PI, 2.0 * Math.PI);
+        ctx2.fill();
+        ctx2.stroke();
+        ctx2.closePath();
+
+        // Quadrado fim esquerdo
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'yellow';
+        ctx2.fillRect(0, 400, 50, 100);
+        ctx2.closePath();
+
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'yellow';
+        ctx2.fillRect(50, 450, 50, 50);
+        ctx2.closePath();
+
+        // Quadrado fim direito
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'black';
+        ctx2.fillRect(450, 400, 50, 100);
+        ctx2.closePath();
+
+        ctx2.beginPath();
+        ctx2.lineWidth = 2;
+        ctx2.fillStyle = 'black';
+        ctx2.fillRect(400, 450, 50, 50);
+        ctx2.closePath();
+
+    </script>
+</body>
+
+</html>

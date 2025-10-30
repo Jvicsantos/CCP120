@@ -1,0 +1,83 @@
+/* Estilo geral do corpo */
+body {
+  font-family: sans-serif;
+  background: #f9f9f9;
+  padding: 20px;
+  margin: 0;
+}
+
+/* Título principal */
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Menu de navegação */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 10px;
+  background: #222;
+  padding: 10px 20px;
+}
+
+/* Links do menu */
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background 0.3s, color 0.3s;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+/* Tabela de projetos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #eee;
+  color: #333;
+}
+
+/* Links dentro da tabela */
+table a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+table a:hover {
+  color: #004999;
+  text-decoration: underline;
+}
+
+/* Descrição (texto da página inicial) */
+.descricao {
+  text-align: center;
+  color: #555;
+  font-size: 18px;
+  margin-top: 10px;
+}

@@ -1,0 +1,50 @@
+body {
+  background-color: #87CEFA;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-image: url(Quagmire-in-Family-Guy-5.avif);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Canvas central */
+canvas {
+  background-color: transparent;
+  margin-top: 80px; /* espaço para o botão fixo no topo */
+}
+
+/* === BOTÃO FIXO "Ver meus projetos" === */
+.voltar-topo {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* Estilo do botão */
+.link-projetos {
+  display: inline-block;
+  background-color: white;
+  color: #4caf50;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid #4caf50;
+  transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.link-projetos:hover {
+  background-color: #388e3c;
+  color: white;
+  border-color: #388e3c;
+  transform: scale(1.05);
+}

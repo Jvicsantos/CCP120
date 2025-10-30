@@ -1,0 +1,205 @@
+body {
+    /* Estilos iniciais */
+    margin: 0;
+    font-family: "Sans-Serif", Arial, sans-serif;
+    background-color: lightgray; /* fundo geral */
+    color: black; /* cor do texto padrão */
+    text-align: center;
+
+    /* Novos estilos para o body (se desejar substituir o anterior): */
+    /* font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+    padding: 0; */
+}
+
+/* Cabeçalho */
+header {
+    background-color: bisque;
+    border: 2px solid darkgreen;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* imagem do cabeçalho */
+header img {
+    width: 70px;
+    height: 70px;
+    margin:0 20;
+}
+header h1 {
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 24pt;
+    margin: 0;
+    font-family: serif;
+}
+
+/* Navegação */
+nav {
+    background-color: lightskyblue;
+    border-top: 2px solid darkgreen;
+    border-bottom: 2px solid darkgreen;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+nav li {
+    font-weight: bold;
+    font-size: 12pt;
+    color: darkred;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Conteúdo principal (main) */
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #f0f0f0;
+    padding: 15px 20px;
+    border-radius: 5px;
+}
+
+/* Estilos de títulos (h1 não existe no main, mas h2 e h3 sim) */
+h2, h3 {
+    font-weight: bold;
+    color: indigo;
+    /* h1, h2: text-align: center; (se usar o segundo bloco CSS) */
+}
+
+p {
+    font-size: 16pt;
+    line-height: 1.4;
+    max-width: 800px;
+    margin: 10px auto 25px auto;
+}
+
+/* Seção de livros */
+.livros {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+.livros img {
+    width: 160px;
+    height: auto;
+    box-shadow: 0 0 6px #999;
+}
+
+/* Aprenda na FEI */
+.aprenda {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+.aprenda iframe, .aprenda img {
+    /* iframe para o vídeo, o outro iframe é um mapa */
+    width: 320px;
+    height: 240px;
+    border: 1px solid indigo;
+}
+
+/* Tabela de contatos */
+table {
+    margin: 0 auto 30px auto;
+    border-collapse: collapse;
+    border: 1px dotted red;
+    font-size: 14px;
+    color: darkred;
+    width: 320px;
+}
+table th, table td {
+    border: 1px dotted red;
+    padding: 5px;
+}
+table th {
+    font-weight: bold;
+}
+
+/* Links de estudo */
+.sites-consulta {
+    background-color: yellow;
+    width: 320px;
+    margin: 0 auto 30px auto;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: black;
+}
+/* Estilos para todos os links, incluindo dentro de .sites-consulta (sobrescrevem o `a { }` global) */
+.sites-consulta a {
+    font-weight: bold;
+    color: darkred;
+    text-decoration: none;
+}
+.sites-consulta a:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé */
+footer {
+    background-color: bisque;
+    border-top: 2px solid darkgreen;
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+    border-bottom: 2px solid darkgreen;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 15pt;
+    color: black;
+}
+footer .left-logo, footer .right-logo {
+    width: 60px;
+    height: 60px;
+}
+footer .text {
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Rodapé com link de volta (Contêiner do link) */
+.voltar {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: white;
+    border-top: 3px solid #388e3c;
+}
+
+/* Estilos para o link final (O seu bloco de CSS) */
+/* OBS: O seu CSS inclui um `a { }` global, mas estou mantendo o `a` original. 
+   Se quiser o `a { color: #4caf50; text-decoration: none; }` global, 
+   então substitua os estilos dos links no bloco .sites-consulta e remova o .link-voltar */
+
+.link-projetos {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: white;
+    color: #4caf50;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.link-projetos:hover {
+    background-color: #388e3c;
+    color: white;
+}
+
+/* O código original da classe .link-voltar foi substituído/renomeado por .link-projetos. */
+/* Removido o .link-voltar e .link-voltar:hover para usar o .link-projetos e .link-projetos:hover. */

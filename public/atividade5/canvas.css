@@ -1,0 +1,28 @@
+/* Estilização básica para centralizar o contêiner do link */
+.voltar {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    background-color: #f4f4f4; /* Fundo leve para separar */
+}
+
+/* Estilo do Botão (link-projetos) */
+.link-projetos {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: white;
+    color: #4caf50;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #4caf50; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Estilo ao passar o mouse */
+.link-projetos:hover {
+    background-color: #388e3c;
+    color: white;
+    border-color: #388e3c;
+}

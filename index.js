@@ -42,17 +42,17 @@ const listarPosts = db.prepare(
 
 // ===== ROTAS =====
 
-// Página inicial → Projects.html
+// Página inicial → Project.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade1', 'projects.html'));
+  res.sendFile(path.join(__dirname, 'public', 'atividade1', 'Project.html'));
 });
 
-// Home e Projects
+// Home e Project
 app.get('/Home.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'atividade1', 'index.html'));
 });
 app.get('/Project.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade1', 'projects.html'));
+  res.sendFile(path.join(__dirname, 'public', 'atividade1', 'Project.html'));
 });
 
 // ===== ATIVIDADE 8 - CADASTRO E LOGIN =====

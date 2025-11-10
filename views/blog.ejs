@@ -1,0 +1,43 @@
+<!-- views/blog.ejs -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Posts</title>
+  <link rel="stylesheet" href="/atividade9/blog.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="cabecalho">
+      <h1>Blog</h1>
+      <div class="acoes">
+        <a class="btn" href="/cadastrar_post">+ Novo Post</a>
+        <a class="link" href="/Project.html">↩ Voltar para projetos</a>
+      </div>
+    </header>
+
+    <% if (posts && posts.length) { %>
+      <ul class="lista">
+        <% posts.forEach(p => { %>
+          <li class="post">
+            <h2><%= p.titulo %></h2>
+            <p class="resumo"><%= p.resumo %></p>
+            <details>
+              <summary>Ler conteúdo</summary>
+              <p class="conteudo"><%= p.conteudo %></p>
+            </details>
+            <small class="data">
+              Publicado em <%= new Date(p.created_at).toLocaleString('pt-BR') %>
+            </small>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p class="vazio">
+        Nenhum post ainda. Que tal <a href="/cadastrar_post">criar o primeiro</a>?
+      </p>
+    <% } %>
+  </main>
+</body>
+</html>

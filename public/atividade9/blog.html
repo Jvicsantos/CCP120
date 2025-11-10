@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Posts</title>
+
+  <style>
+    :root {
+      --bg: #f4f7ff;
+      --txt: #111827;
+      --muted: #6b7280;
+      --brand: #1565c0;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      display: grid;
+      place-items: center;
+      padding: 20px 0;
+      box-sizing: border-box;
+    }
+
+    .wrap { width: min(900px, 94vw); }
+
+    .cabecalho {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+      border-bottom: 3px solid var(--brand);
+    }
+
+    .acoes { display: flex; gap: 10px; align-items: center; }
+
+    .btn {
+      display: inline-block;
+      background: var(--brand);
+      color: #fff;
+      border: 2px solid var(--brand);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: #0d47a1;
+      border-color: #0d47a1;
+    }
+
+    .link {
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .link:hover { text-decoration: underline; }
+
+    .lista {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 20px;
+    }
+
+    .post {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .post h2 {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 1.7rem;
+    }
+
+    .post .resumo {
+      color: var(--muted);
+      margin: 0 0 15px;
+      font-style: italic;
+      border-left: 3px solid #ccc;
+      padding-left: 10px;
+    }
+
+    .post details {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      transition: all 0.3s;
+    }
+
+    .post details[open] {
+      background: #fff;
+      border-color: var(--brand);
+    }
+
+    .post .conteudo {
+      white-space: pre-wrap;
+      margin: 10px 0 0;
+      padding: 5px 0;
+    }
+
+    .post .data {
+      display: block;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .vazio {
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+      padding: 30px;
+      background: #fff;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="cabecalho">
+      <h1>Blog</h1>
+      <div class="acoes">
+        <a class="btn" href="/cadastrar_post">+ Novo Post</a>
+        <a class="link" href="/Project.html">↩ Voltar para projetos</a>
+      </div>
+    </header>
+
+    <ul id="lista" class="lista"></ul>
+    <p id="vazio" class="vazio" style="display:none">
+      Nenhum post ainda. Que tal <a href="/cadastrar_post">criar o primeiro</a>?
+    </p>
+  </main>
+
+  <script>
+    const posts = [
+      {
+        titulo: "O Poder da Single-Page Application (SPA)",
+        resumo: "Explorando como as SPAs revolucionam a experiência do usuário moderno.",
+        conteudo: `Uma Single-Page Application (SPA) carrega uma única página e atualiza
+dinamicamente conforme a interação do usuário. Frameworks como React,
+Angular e Vue popularizaram essa abordagem.`,
+        created_at: "09/11/2025 23:30:00"
+      },
+      {
+        titulo: "Firebase e Firestore: A Nova Geração de Bancos de Dados",
+        resumo: "Introdução ao Firestore e suas vantagens para aplicações em tempo real.",
+        conteudo: `O Firebase oferece BaaS. O Firestore é um banco NoSQL com sincronização em
+tempo real (onSnapshot), ideal para apps colaborativos e chats.`,
+        created_at: "05/11/2025 10:15:22"
+      }
+    ];
+
+    function renderPosts() {
+      const lista = document.getElementById("lista");
+      const vazio = document.getElementById("vazio");
+
+      if (posts.length === 0) {
+        vazio.style.display = "block";
+        return;
+      }
+
+      posts.forEach((p) => {
+        const li = document.createElement("li");
+        li.className = "post";
+        li.innerHTML = `
+          <h2>${p.titulo}</h2>
+          <p class="resumo">${p.resumo}</p>
+          <details>
+            <summary>Ler conteúdo</summary>
+            <p class="conteudo">${p.conteudo}</p>
+          </details>
+          <small class="data">Publicado em ${p.created_at}</small>
+        `;
+        lista.appendChild(li);
+      });
+    }
+
+    renderPosts();
+  </script>
+</body>
+</html>

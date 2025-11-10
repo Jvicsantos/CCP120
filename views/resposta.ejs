@@ -4,39 +4,27 @@
   <meta charset="UTF-8">
   <title>Status do Login</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      height: 100vh; 
-      background-color: #f2f2f2;
+    body {
+      font-family: Arial, sans-serif; display: flex; justify-content: center;
+      align-items: center; height: 100vh; background-color: #f2f2f2; margin: 0;
     }
-    div {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      text-align: center;
+    .card {
+      background: #fff; padding: 20px; border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); text-align: center; min-width: 320px;
     }
-    a { 
-      color: #007bff; 
-      text-decoration: none; 
-    }
-    a:hover { 
-      text-decoration: underline; 
-    }
+    a { color: #007bff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <div>
+  <div class="card">
     <h1><%= status %></h1>
     <% if (usuario) { %>
-      <p>Bem-vindo(a), <%= usuario %>!</p>
+      <p>Bem-vindo(a), <strong><%= usuario %></strong>!</p>
     <% } else { %>
       <p>Por favor, tente novamente.</p>
     <% } %>
-    <a href="/atividade8/login.html">Voltar ao login</a>
+    <p><a href="/login">Voltar ao login</a> • <a href="/Project.html">Projetos</a></p>
   </div>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Carros</title>
+  <style>
+    body { background-color: #f0f8ff; text-align: center; font-family: Arial; }
+    table { margin: 20px auto; border-collapse: collapse; width: 80%; }
+    th, td { border: 1px solid #888; padding: 8px; }
+    th { background-color: #d0e0ff; }
+    a { text-decoration: none; margin: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Carros Disponíveis</h1>
+  <a href="/carros/novo">➕ Novo Carro</a>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Qtde</th>
+      <th>Ações</th>
+    </tr>
+    <% carros.forEach(carro => { %>
+      <tr>
+        <td><%= carro.id %></td>
+        <td><%= carro.marca %></td>
+        <td><%= carro.modelo %></td>
+        <td><%= carro.ano %></td>
+        <td>
+          <% if (carro.qtde_disponivel > 0) { %>
+            <%= carro.qtde_disponivel %>
+          <% } else { %>
+            <b style="color:red;">Esgotado</b>
+          <% } %>
+        </td>
+        <td>
+          <a href="/carros/vender/<%= carro.id %>">🚗 Vender</a>
+          <a href="/carros/editar/<%= carro.id %>">✏️ Editar</a>
+          <a href="/carros/remover/<%= carro.id %>">🗑️ Remover</a>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+  <a href="/">⬅ Voltar</a>
+</body>
+</html>

@@ -16,99 +16,99 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// ===== BANCO EM MEMÓRIA (Atv 8 - login/cadastro) =====
-const usuarios = [];
-
-// ====== BLOG: SQLite (Create + Read) ======
-const db = new Database(path.join(__dirname, 'blog.sqlite'));
+// ===== BANCO DE DADOS =====
+const db = new Database(path.join(__dirname, 'banco.sqlite'));
 db.pragma('journal_mode = WAL');
 
+// === Tabelas ===
 db.prepare(`
-  CREATE TABLE IF NOT EXISTS posts (
+  CREATE TABLE IF NOT EXISTS usuarios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    titulo   TEXT NOT NULL,
-    resumo   TEXT NOT NULL,
-    conteudo TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    nome TEXT NOT NULL,
+    login TEXT UNIQUE NOT NULL,
+    senha TEXT NOT NULL
   )
 `).run();
 
-const inserirPost = db.prepare(
-  'INSERT INTO posts (titulo, resumo, conteudo) VALUES (?, ?, ?)'
-);
-const listarPosts = db.prepare(
-  'SELECT id, titulo, resumo, conteudo, created_at FROM posts ORDER BY created_at DESC'
-);
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS carros (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    marca TEXT NOT NULL,
+    modelo TEXT NOT NULL,
+    ano INTEGER NOT NULL,
+    qtde_disponivel INTEGER NOT NULL
+  )
+`).run();
+
+// === Prepared Statements ===
+const inserirCarro = db.prepare(`
+  INSERT INTO carros (marca, modelo, ano, qtde_disponivel)
+  VALUES (?, ?, ?, ?)
+`);
+const listarCarros = db.prepare(`SELECT * FROM carros ORDER BY id DESC`);
+const buscarCarro = db.prepare(`SELECT * FROM carros WHERE id = ?`);
+const atualizarCarro = db.prepare(`
+  UPDATE carros SET marca=?, modelo=?, ano=?, qtde_disponivel=? WHERE id=?
+`);
+const removerCarro = db.prepare(`DELETE FROM carros WHERE id=?`);
+const venderCarro = db.prepare(`
+  UPDATE carros SET qtde_disponivel = qtde_disponivel - 1 WHERE id=? AND qtde_disponivel > 0
+`);
 
 // ===== ROTAS =====
 
-// Página inicial → Project.html
+// Página inicial → Projects.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'atividade1', 'Project.html'));
 });
 
-// Home e Project
-app.get('/Home.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade1', 'index.html'));
-});
-app.get('/Project.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade1', 'Project.html'));
-});
+// ===== ROTAS DE CARROS =====
 
-// ===== ATIVIDADE 8 - CADASTRO E LOGIN =====
-
-// Página de cadastro
-app.get('/cadastra', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade8', 'Cadastro.html'));
+// Listagem de carros (dinâmica com EJS)
+app.get('/carros', (req, res) => {
+  const carros = listarCarros.all();
+  res.render('carros_lista', { carros });
 });
 
-// Envio do cadastro
-app.post('/cadastra', (req, res) => {
-  const { usuario, email, senha } = req.body;
-  if (!usuario || !email || !senha) {
-    return res.render('resposta', { status: 'Preencha todos os campos.', usuario: null });
+// Página de cadastro (HTML estático)
+app.get('/carros/novo', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'atividade10', 'carros_novo.html'));
+});
+
+// Envio do formulário de cadastro (CREATE)
+app.post('/carros/novo', (req, res) => {
+  const { marca, modelo, ano, qtde_disponivel } = req.body;
+  if (!marca || !modelo || !ano || !qtde_disponivel) {
+    return res.status(400).send('Preencha todos os campos.');
   }
-  usuarios.push({ usuario, email, senha });
-  console.log('✅ Usuário cadastrado:', usuario);
-  res.redirect('/login');
+  inserirCarro.run(marca, modelo, ano, qtde_disponivel);
+  res.redirect('/carros');
 });
 
-// Página de login
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade8', 'Login.html'));
+// Editar carro (form dinâmico)
+app.get('/carros/editar/:id', (req, res) => {
+  const carro = buscarCarro.get(req.params.id);
+  if (!carro) return res.status(404).send('Carro não encontrado.');
+  res.render('carros_editar', { carro });
 });
 
-// Envio do login
-app.post('/login', (req, res) => {
-  const { usuario, senha } = req.body;
-  const user = usuarios.find(u => u.usuario === usuario && u.senha === senha);
-  if (user) {
-    return res.render('resposta', { status: 'Login bem-sucedido!', usuario: user.usuario });
-  }
-  return res.render('resposta', { status: 'Usuário ou senha inválidos.', usuario: null });
+// Atualizar carro (UPDATE)
+app.post('/carros/editar/:id', (req, res) => {
+  const { marca, modelo, ano, qtde_disponivel } = req.body;
+  atualizarCarro.run(marca, modelo, ano, qtde_disponivel, req.params.id);
+  res.redirect('/carros');
 });
 
-// ===== ATIVIDADE 9 - BLOG =====
-
-// Página principal do blog (dinâmica com EJS)
-app.get('/blog', (req, res) => {
-  const posts = listarPosts.all(); // busca no BD
-  res.render('blog', { posts });   // views/blog.ejs
+// Remover carro (DELETE)
+app.get('/carros/remover/:id', (req, res) => {
+  removerCarro.run(req.params.id);
+  res.redirect('/carros');
 });
 
-// Página de cadastro de post (formulário estático)
-app.get('/cadastrar_post', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'atividade9', 'cadastrar_post.html'));
-});
-
-// Recebe submissão do novo post (Create)
-app.post('/cadastrar_post', (req, res) => {
-  const { titulo, resumo, conteudo } = req.body;
-  if (!titulo || !resumo || !conteudo) {
-    return res.status(400).send('Preencha título, resumo e conteúdo.');
-  }
-  inserirPost.run(titulo, resumo, conteudo);
-  res.redirect('/blog');
+// Vender carro (decrementa quantidade)
+app.get('/carros/vender/:id', (req, res) => {
+  venderCarro.run(req.params.id);
+  res.redirect('/carros');
 });
 
 // ===== SERVIDOR =====
@@ -116,8 +116,5 @@ const PORT = 80;
 const HOST = '0.0.0.0';
 app.listen(PORT, HOST, () => {
   console.log(`🚀 Servidor rodando em http://${HOST}:${PORT}/`);
-  console.log('Use ipconfig para pegar o IP e acessar de outro PC:');
-  console.log('➡  http://<seu-IP>/Project.html');
-  console.log('➡  http://<seu-IP>/login');
-  console.log('➡  http://<seu-IP>/blog');
+  console.log('➡  http://localhost/carros');
 });

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciamento de Carros</title>
+  <style>
+    body { background-color: #f0f8ff; text-align: center; font-family: Arial; }
+    table { margin: auto; border-collapse: collapse; width: 80%; }
+    th, td { border: 1px solid #333; padding: 8px; }
+    .esgotado { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>🚗 Lista de Carros</h1>
+  <a href="/public/atividade10/carros_novo.html">Cadastrar novo carro</a>
+  <table>
+    <tr>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Ano</th>
+      <th>Disponíveis</th>
+      <th>Ações</th>
+    </tr>
+    <% carros.forEach(carro => { %>
+      <tr>
+        <td><%= carro.marca %></td>
+        <td><%= carro.modelo %></td>
+        <td><%= carro.ano %></td>
+        <td class="<%= carro.qtde_disponivel === 0 ? 'esgotado' : '' %>">
+          <%= carro.qtde_disponivel === 0 ? 'Esgotado' : carro.qtde_disponivel %>
+        </td>
+        <td>
+          <form action="/carros/vender/<%= carro.id %>" method="post" style="display:inline;">
+            <button type="submit">Vender</button>
+          </form>
+          <a href="/carros/editar/<%= carro.id %>">Editar</a>
+          <form action="/carros/remover/<%= carro.id %>" method="post" style="display:inline;">
+            <button type="submit">Remover</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

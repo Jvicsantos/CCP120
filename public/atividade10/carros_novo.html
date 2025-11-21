@@ -1,22 +1,75 @@
 <!DOCTYPE html>
+<!-- Define que o documento segue o padrão HTML5 -->
+
 <html lang="pt-br">
+<!-- Inicia o documento HTML e define o idioma como português brasileiro -->
+
 <head>
+  <!-- Cabeçalho da página com metadados e estilos -->
+
   <meta charset="UTF-8">
+  <!-- Define que o documento usa o conjunto de caracteres UTF-8 (suporta acentos) -->
+
   <title>Cadastrar Carro</title>
+  <!-- Título que aparece na aba do navegador -->
+
   <style>
-    body { background-color: #faf0e6; text-align: center; font-family: Arial; }
-    form { margin-top: 40px; }
-    input { margin: 5px; padding: 8px; }
+    /* Início do CSS interno */
+
+    body {
+      background-color: #faf0e6; /* Cor de fundo da página */
+      text-align: center;        /* Centraliza o texto */
+      font-family: Arial;        /* Define a fonte */
+    }
+
+    form {
+      margin-top: 40px;          /* Espaço acima do formulário */
+    }
+
+    input {
+      margin: 5px;               /* Espaçamento externo entre inputs */
+      padding: 8px;              /* Espaçamento interno dentro dos inputs */
+    }
+
+    /* Fim do CSS */
   </style>
 </head>
+
 <body>
+  <!-- Corpo da página, onde fica o conteúdo visível -->
+
   <h1>Cadastro de Carro</h1>
+  <!-- Título principal da página -->
+
   <form action="/carros/novo" method="post">
-    <input type="text" name="marca" placeholder="Marca" required><br>
-    <input type="text" name="modelo" placeholder="Modelo" required><br>
-    <input type="number" name="ano" placeholder="Ano" required><br>
-    <input type="number" name="qtde_disponivel" placeholder="Quantidade disponível" required><br>
+    <!-- Início do formulário
+         action="/carros/novo"  → rota do servidor que receberá os dados
+         method="post"          → envia os dados de maneira segura pelo método POST
+    -->
+
+    <input type="text" name="marca" placeholder="Marca" required>
+    <!-- Campo de texto para a marca do carro
+         placeholder → texto de dica
+         required    → obrigatório
+    -->
+    <br> <!-- Quebra de linha -->
+
+    <input type="text" name="modelo" placeholder="Modelo" required>
+    <!-- Campo de texto para o modelo do carro -->
+    <br>
+
+    <input type="number" name="ano" placeholder="Ano" required>
+    <!-- Campo numérico para o ano do carro -->
+    <br>
+
+    <input type="number" name="qtde_disponivel" placeholder="Quantidade disponível" required>
+    <!-- Campo numérico para a quantidade disponível de carros -->
+    <br>
+
     <button type="submit">Salvar</button>
+    <!-- Botão que envia o formulário para o servidor -->
   </form>
+
 </body>
+
 </html>
